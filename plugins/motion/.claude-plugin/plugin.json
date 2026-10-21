@@ -1,0 +1,10 @@
+{
+  "name": "motion",
+  "description": "Vídeos de motion graphics escritos em código (Remotion) e sincronizados palavra a palavra com a sua narração",
+  "version": "1.0.0",
+  "author": {
+    "name": "Gabriel Rabelo"
+  },
+  "license": "MIT",
+  "keywords": ["motion", "video", "remotion", "reels", "animacao"]
+}

@@ -1,0 +1,14 @@
+{
+  "name": "gabrielrabelo",
+  "description": "Skills de @gabrielrabeloia para criar com o Claude",
+  "owner": {
+    "name": "Gabriel Rabelo"
+  },
+  "plugins": [
+    {
+      "name": "motion",
+      "source": "./plugins/motion",
+      "description": "Vídeos de motion graphics escritos em código e sincronizados com a sua narração"
+    }
+  ]
+}
