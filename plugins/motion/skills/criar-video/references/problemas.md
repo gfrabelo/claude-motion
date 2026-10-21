@@ -11,7 +11,7 @@ Mesmo caso acima. Se persistir fora dessas pastas, tente `npx remotion render Vi
 ## `npm run transcribe` falha ao compilar
 - Mac: instale as ferramentas de linha de comando: `xcode-select --install`.
 - Windows: o `@remotion/install-whisper-cpp` baixa um binário pronto; rode o terminal como usuário normal e confira o antivírus.
-- Sem espaço: o modelo `medium` tem ~1,5 GB. Use `node scripts/transcribe.mjs narracao.mp3 small` (menos preciso).
+- O Whisper só é usado quando há narração. Sem espaço: o modelo `medium` tem ~1,5 GB. Use `node scripts/transcribe.mjs narracao.mp3 small` (menos preciso).
 
 ## A transcrição errou nomes
 Normal com marcas e @. Edite `fixes.json` e rode `npm run fix`. Use `"depoisDe"` para corrigir só uma ocorrência

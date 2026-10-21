@@ -3,110 +3,70 @@
 Crie vídeos de **motion graphics com cara de motion designer**, com tipografia cinética, cores fortes e transições
 de verdade, **só conversando com o Claude**. Sem After Effects, sem timeline, sem arrastar nada na tela.
 
-Você manda a narração e conta o que quer. O Claude escreve a animação em código, sincroniza cada
-elemento com a palavra falada e entrega o MP4 pronto.
+Você conta o que quer e manda uma referência. O Claude escreve a animação em código e entrega o MP4 pronto.
+Se tiver narração, ele sincroniza cada elemento com a palavra falada.
 
 > Feito por [@gabrielrabeloia](https://instagram.com/gabrielrabeloia)
 
 ---
 
-## O que você precisa
+## Instalação: 1 passo
 
-| | O quê | Custo |
-|---|---|---|
-| 1 | **Assinatura do Claude** Pro ou Max (inclui o Claude Code) | a partir de US$ 20/mês |
-| 2 | **App do Claude no computador** (aba *Code*) ou Claude Code no terminal | grátis com a assinatura |
-| 3 | **Node.js** (versão LTS) | grátis |
-| 4 | Mac: **ferramentas de linha de comando da Apple** | grátis |
-| 5 | ~3 GB livres e internet | |
+**Você precisa de:** assinatura do Claude **Pro** ou **Max** e o app do Claude no computador
+([claude.ai/download](https://claude.ai/download)), aba **Code**. Só isso. O resto o Claude instala.
 
-Funciona em Mac e Windows. Num notebook comum, o render leva de 5 a 8 minutos por minuto de vídeo.
+Abra a aba **Code** e cole:
 
----
-
-## Passo a passo da instalação (só na 1ª vez)
-
-### 1. Assine o Claude
-Entre em [claude.ai](https://claude.ai), faça login e assine o plano **Pro** ou **Max**.
-
-### 2. Instale o Node.js
-1. Acesse [nodejs.org](https://nodejs.org) e baixe a versão **LTS** (o botão verde da esquerda).
-2. Abra o instalador e clique em *Continuar* até o fim.
-3. Confira: abra o **Terminal** (Mac: `Cmd + Espaço`, digite "Terminal") ou o **PowerShell** (Windows) e rode:
-   ```bash
-   node -v
-   ```
-   Deve aparecer algo como `v22.x.x`. Qualquer versão 20 ou maior serve.
-
-### 3. (Só Mac) Instale as ferramentas da Apple
-No Terminal:
-```bash
-xcode-select --install
 ```
-Clique em *Instalar* na janela que abrir. Se disser que já está instalado, pode seguir.
-
-### 4. Instale o Claude Code
-No Terminal:
-```bash
-npm install -g @anthropic-ai/claude-code
+Instala pra mim a skill de motion deste repositório: https://github.com/gfrabelo/claude-motion
 ```
-Depois rode `claude` uma vez e faça login com a sua conta do Claude. Se preferir usar o **app do Claude**,
-baixe em [claude.ai/download](https://claude.ai/download): a aba **Code** usa a mesma instalação.
 
-### 5. Instale a skill
-No Terminal, rode as duas linhas:
-```bash
-claude plugin marketplace add SEU_USUARIO/claude-motion
-claude plugin install motion@gabrielrabelo
-```
-Pronto: o comando `/motion:criar-video` está disponível no Claude Code e na aba Code do app.
+O Claude roda o instalador e cuida de tudo: Node.js, a skill e a pasta `videos`. Leva poucos minutos.
 
 <details>
-<summary>Instalação manual (sem os comandos acima)</summary>
+<summary>Prefere o Terminal? Um comando também resolve</summary>
 
-Baixe este repositório (botão verde **Code → Download ZIP**), descompacte e copie a pasta
-`plugins/motion/skills/criar-video` para `~/.claude/skills/criar-video`
-(no Windows: `C:\Users\SEU_NOME\.claude\skills\criar-video`). Nesse caso o comando é `/criar-video`.
+Mac / Linux:
+```bash
+curl -fsSL https://raw.githubusercontent.com/gfrabelo/claude-motion/main/install.sh | bash
+```
+
+Windows (PowerShell):
+```powershell
+irm https://raw.githubusercontent.com/gfrabelo/claude-motion/main/install.ps1 | iex
+```
 </details>
 
 ---
 
 ## Seu primeiro vídeo
 
-### 1. Grave a narração
-- Grave no celular ou no computador, num lugar silencioso, e exporte em **mp3** (m4a e wav também servem).
-- Frases curtas e diretas. Os primeiros 3 segundos são o gancho: comece com a frase mais forte.
-- 30 a 60 segundos é o ideal para Reels.
+### 1. Abra uma conversa nova no Claude
+Na aba **Code**, escolha uma pasta dentro de **`videos`** (o instalador já criou).
+Se não souber como, peça: *"cria a pasta videos/meu-primeiro-video e abre ela"*.
 
-### 2. Crie uma pasta para o vídeo
-> ⚠️ No Mac, **não** crie dentro de *Documentos*, *Mesa* ou *Downloads*: o macOS bloqueia o render nessas pastas.
+> No Mac, não use pastas dentro de *Documentos*, *Mesa* ou *Downloads*: o macOS bloqueia o render nelas.
 
-```bash
-mkdir -p ~/videos/meu-primeiro-video
-```
-Coloque a narração dentro dela com o nome **`narracao.mp3`**.
-
-### 3. Abra o Claude nessa pasta
-- **App:** aba *Code* → escolha a pasta `videos/meu-primeiro-video`.
-- **Terminal:** `cd ~/videos/meu-primeiro-video` e depois `claude`.
-
-### 4. Peça o vídeo
+### 2. Peça o vídeo
 Exemplo de pedido:
 
 ```
 /motion:criar-video
-Use a narracao.mp3. Formato 9:16 para Reels.
-Cores da marca: #FF5A36 e #0B0F14. No final: "@minhamarca" e "Comenta MOTION".
-Quero algo impressionante, com cara de motion designer. Vai com tudo.
+Um motion de 15s para Reels apresentando a minha hamburgueria.
+Quero nessa linguagem: https://motionvideo.xyz/videos/stephanlivera-df17a2
+Cores da marca: #FF5A36 e #0B0F14. No final: "@minhamarca" e "Peça pelo link da bio".
+Vai com tudo.
 ```
 
-O Claude vai:
-1. preparar o projeto e instalar o que precisa (1ª vez: alguns minutos);
-2. transcrever a narração com tempo por palavra (roda no seu computador, nada é enviado);
-3. **mostrar o plano de cenas** para você aprovar;
-4. montar as cenas, revisar os quadros e renderizar `out/video.mp4`.
+**Tem narração?** Coloque o áudio (mp3) na pasta e diga *"sincroniza com a narração"*. O Claude prepara a transcrição
+na hora (na 1ª vez baixa ~1,5 GB e, no Mac, pode pedir para instalar as ferramentas da Apple).
 
-### 5. Ajuste conversando
+O Claude vai:
+1. estudar a referência e preparar o projeto (1ª vez: alguns minutos);
+2. **mostrar o plano de cenas** para você aprovar;
+3. montar as cenas, revisar os quadros e renderizar `out/video.mp4`.
+
+### 3. Ajuste conversando
 Depois de assistir, peça mudanças em linguagem normal:
 - "a cena 3 está lenta, acelera"
 - "troca o fundo do final para preto"
@@ -129,19 +89,32 @@ Para ver o vídeo sendo montado antes do render final, peça *"abre o preview"* 
 | Sintoma | Solução |
 |---|---|
 | Render travado em "Getting composition" (Mac) | O projeto está em Documentos/Mesa/Downloads. Mova para `~/videos/...` |
-| Erro ao transcrever no Mac | Rode `xcode-select --install` e tente de novo |
+| Erro ao transcrever a narração (Mac) | Rode `xcode-select --install` e tente de novo |
 | Nomes errados na transcrição | Peça: *"corrige 'Cloud' para 'Claude' na transcrição"* |
-| `command not found: claude` / `node` | Feche e abra o Terminal de novo, ou refaça os passos 2 e 4 |
+| `/motion:criar-video` não aparece | Abra uma conversa nova (ou digite `/reload-plugins`) |
+| Algo falhou na instalação | Peça ao Claude: *"roda o instalador da skill de motion de novo"* (ele pula o que já está pronto) |
 | Fonte diferente / timeout | O render precisa de internet (as fontes vêm do Google Fonts) |
 
 Mais detalhes em [`references/problemas.md`](plugins/motion/skills/criar-video/references/problemas.md).
 
 ---
 
+## Para o Claude: como instalar
+
+> Se alguém te mandou este repositório pedindo para instalar, siga estes passos. Não clone o repo nem copie arquivos à mão: o plugin cuida disso.
+
+1. Rode o instalador (ele pula o que já está instalado):
+   - Mac/Linux: `curl -fsSL https://raw.githubusercontent.com/gfrabelo/claude-motion/main/install.sh | bash`
+   - Windows: `powershell -NoProfile -Command "irm https://raw.githubusercontent.com/gfrabelo/claude-motion/main/install.ps1 | iex"`
+2. Ao terminar, confirme que `claude plugin list` mostra `motion@gabrielrabelo`. Se falhou, leia a última linha `✖` e resolva (ex.: sem internet, sem espaço) antes de rodar de novo.
+3. Diga à pessoa, em poucas linhas: que está instalado; que precisa abrir uma **conversa nova** (ou `/reload-plugins`) para o comando `/motion:criar-video` aparecer; e como pedir o primeiro vídeo (uma pasta dentro de `~/videos` + o exemplo de pedido acima, com um link de referência). Ofereça já criar a pasta do primeiro vídeo.
+
+---
+
 ## Como funciona (para os curiosos)
 
 - **[Remotion](https://www.remotion.dev)**: vídeo feito em React; cada frame é uma página renderizada pelo Chrome.
-- **Whisper (whisper.cpp)**: transcrição local com tempo por palavra; cada elemento entra na palavra em que é dito.
+- **Whisper (whisper.cpp)**, só quando há narração: transcrição local com tempo por palavra, para cada elemento entrar na palavra em que é dito.
 - **A skill** ensina o Claude o processo (sincronia → plano de cenas → construção → revisão de quadros → render)
   e a linguagem visual (tipografia gigante, fundos chapados, transições motivadas, HUD), com componentes prontos.
 

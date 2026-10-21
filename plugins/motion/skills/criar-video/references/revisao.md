@@ -16,7 +16,7 @@ Rode em cada folha de contato (`npm run sheet`) antes de renderizar.
 - [ ] A transição é motivada: dá para dizer qual elemento virou o próximo.
 
 ## Fala × imagem
-- [ ] Cada elemento-chave entra na palavra em que é dito (±2 frames).
+- [ ] Com narração: cada elemento-chave entra na palavra em que é dito (±2 frames).
 - [ ] Nenhum rótulo, número ou afirmação que a fala não faz.
 - [ ] Sem som, a ideia de cada cena continua clara.
 
@@ -24,4 +24,4 @@ Rode em cada folha de contato (`npm run sheet`) antes de renderizar.
 - [ ] Hook: a 1ª palavra está na tela antes do frame 5.
 - [ ] Nenhum trecho parado por mais de 1,5 s.
 - [ ] O frame final é limpo: @/marca + CTA, sem restos de cenas anteriores.
-- [ ] Duração do MP4 ≈ narração + ~1,5 s.
+- [ ] Com narração: duração do MP4 ≈ narração + ~1,5 s.

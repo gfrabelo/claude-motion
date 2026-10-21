@@ -1,6 +1,8 @@
 // Transcreve a narração com Whisper local (whisper.cpp), com tempo por palavra.
 // usage: node scripts/transcribe.mjs [arquivo de áudio] [modelo]
-// Na 1ª vez baixa e compila o whisper.cpp e o modelo (pode levar alguns minutos).
+// Usa o whisper.cpp compartilhado em ~/.cache/claude-motion (o install.sh já deixa pronto);
+// se não existir, baixa e compila na 1ª vez (pode levar alguns minutos).
+import os from "node:os";
 import path from "node:path";
 import fs from "node:fs";
 import { execFileSync } from "node:child_process";
@@ -10,7 +12,7 @@ import { installWhisperCpp, downloadWhisperModel, transcribe, toCaptions } from 
 const [input = "narracao.mp3", model = "medium"] = process.argv.slice(2);
 const LANG = process.env.LANG_WHISPER ?? "pt";
 const VERSION = "1.5.5";
-const whisperPath = process.env.WHISPER_PATH ?? path.join(process.cwd(), "whisper.cpp");
+const whisperPath = process.env.WHISPER_PATH ?? path.join(os.homedir(), ".cache", "claude-motion", "whisper.cpp");
 
 if (!fs.existsSync(input)) {
   console.error(`Não achei "${input}". Coloque a narração na raiz do projeto como narracao.mp3.`);
